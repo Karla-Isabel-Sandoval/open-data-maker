@@ -52,6 +52,25 @@ module DataMagic
   end
 
 
+  # squery: Stretchy query
+  # terms: if :distance, must also have zip
+  def self.update_query_with_geo(squery, terms)
+    #error = nil
+    distance = terms[:distance]
+    zip = terms[:zip]
+    #error = "zip code required for distance search" if zip.nil?
+    zip_location = Zipcode.latlon(zip)
+    logger.info "zip: #{zip} location:#{zip_location}"
+    if distance && !distance.empty?
+      if zip_location == nil
+        logger.error "zip code location not found for zip: #{zip.inspect}"
+      end
+      squery = squery.geo('location', distance: distance, lat: zip_location[:lat], lng: zip_location[:lon])
+      terms.delete(:distance)
+      terms.delete(:zip)
+    end
+  end
+
   #========================================================================
   #   Public Class Methods
   #========================================================================
@@ -64,18 +83,7 @@ module DataMagic
     index_name = index_name_from_options(options)
     logger.info "search terms:#{terms.inspect}"
     squery = Stretchy.query
-
-    distance = terms[:distance]
-    zip = terms[:zip]
-    zip_location = Zipcode.latlon(zip)
-    if distance && !distance.empty? 
-      if zip_location == nil
-        zip_location = { lat: 37.615223, lon:-122.389977 } #sfo is default if zip code is not found
-      end
-      squery = squery.geo('location', distance: distance, lat: zip_location[:lat], lng: zip_location[:lon])
-      terms.delete(:distance)
-      terms.delete(:zip)
-    end
+    update_query_with_geo(squery, terms)
 
     page = terms[:page] || 0
     per_page = terms[:per_page] || config.page_size
