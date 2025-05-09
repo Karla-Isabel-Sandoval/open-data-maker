@@ -16,7 +16,7 @@ gem 'elasticsearch'
 gem 'stretchy'
 gem 'hashie'
 gem 'cf-app-utils'
-gem 'unicorn'
+gem 'unicorn', '>= 5.1.0'
 gem 'safe_yaml'
 gem 'aws-sdk', '~> 2'
 gem 'actionview'
@@ -39,10 +39,10 @@ group :test do
 end
 
 group 'dev' do
-  gem 'google_drive'
+  gem 'google_drive', '>= 2.0.2'
 end
 # Padrino Stable Gem
-gem 'padrino', '0.12.5'
+gem 'padrino', '0.14.3'
 
 gem 'pry', :group => 'development'
 gem 'pry-byebug', :group => 'development'
