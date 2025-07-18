@@ -13,13 +13,13 @@ ruby '2.2.2'
 
 # open-data-maker requirements
 gem 'elasticsearch'
-gem 'stretchy'
+gem 'stretchy', '>= 0.5.0'
 gem 'hashie'
 gem 'cf-app-utils'
 gem 'unicorn'
 gem 'safe_yaml'
 gem 'aws-sdk', '~> 2'
-gem 'actionview'
+gem 'actionview', '>= 5.0.0'
 gem 'dotenv'
 
 # Project requirements
@@ -35,14 +35,14 @@ gem 'erubis'
 group :test do
   gem 'rspec'
   gem 'rspec-mocks'
-  gem 'rack-test', :require => 'rack/test'
+  gem 'rack-test', '>= 2.0.0', :require => 'rack/test'
 end
 
 group 'dev' do
-  gem 'google_drive'
+  gem 'google_drive', '>= 1.0.2'
 end
 # Padrino Stable Gem
-gem 'padrino', '0.12.5'
+gem 'padrino', '0.12.9'
 
 gem 'pry', :group => 'development'
 gem 'pry-byebug', :group => 'development'
