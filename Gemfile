@@ -19,7 +19,7 @@ gem 'cf-app-utils'
 gem 'unicorn'
 gem 'safe_yaml'
 gem 'aws-sdk', '~> 2'
-gem 'actionview'
+gem 'actionview', '>= 4.2.4'
 gem 'dotenv'
 
 # Project requirements
@@ -39,10 +39,10 @@ group :test do
 end
 
 group 'dev' do
-  gem 'google_drive'
+  gem 'google_drive', '>= 1.0.2'
 end
 # Padrino Stable Gem
-gem 'padrino', '0.12.5'
+gem 'padrino', '0.15.1'
 
 gem 'pry', :group => 'development'
 gem 'pry-byebug', :group => 'development'
