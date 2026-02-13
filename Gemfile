@@ -12,8 +12,8 @@ ruby '2.2.2'
 # gem 'oj'
 
 # open-data-maker requirements
-gem 'elasticsearch'
-gem 'stretchy'
+gem 'elasticsearch', '>= 1.0.13'
+gem 'stretchy', '>= 0.5.0'
 gem 'hashie'
 gem 'cf-app-utils'
 gem 'unicorn'
@@ -39,7 +39,7 @@ group :test do
 end
 
 group 'dev' do
-  gem 'google_drive'
+  gem 'google_drive', '>= 2.0.0'
 end
 # Padrino Stable Gem
 gem 'padrino', '0.12.5'
